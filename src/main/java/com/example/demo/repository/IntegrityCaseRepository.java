@@ -13,7 +13,8 @@ public interface IntegrityCaseRepository extends JpaRepository<IntegrityCase, Lo
 
     List<IntegrityCase> findByStudentProfile_Id(Long studentId);
 
-    List<IntegrityCase> findByStudentIdentifier(String studentIdentifier);
+    List<IntegrityCase> findByStudentProfile_StudentIdentifier(String studentIdentifier);
+
 
     List<IntegrityCase> findRecentCasesByStatus(String status, LocalDate sinceDate);
 
