@@ -10,3 +10,5 @@ public class DemoApplication {
     }
 }
 
+// sudo apt update
+// sudo apt install maven
