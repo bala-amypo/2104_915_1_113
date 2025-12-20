@@ -15,10 +15,10 @@ public interface IntegrityCaseRepository extends JpaRepository<IntegrityCase, Lo
 
     List<IntegrityCase> findByStudentProfile_StudentIdentifier(String studentIdentifier);
 
-
-    List<IntegrityCase> findRecentCasesByStatus(String status, LocalDate sinceDate);
+    List<IntegrityCase> findByStatusAndIncidentDateAfter(String status, LocalDate sinceDate);
 
     List<IntegrityCase> findByIncidentDateBetween(LocalDate start, LocalDate end);
 
     List<IntegrityCase> findByStatus(String status);
 }
+
