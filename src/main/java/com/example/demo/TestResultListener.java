@@ -20,3 +20,7 @@ public class TestResultListener implements ITestListener {
         System.out.println(result.getName() + " - SKIP");
     }
 }
+// mkdir -p src/test/java/com/example/demo
+
+// mv src/main/java/com/example/demo/TestResultListener.java \
+//    src/test/java/com/example/demo/
