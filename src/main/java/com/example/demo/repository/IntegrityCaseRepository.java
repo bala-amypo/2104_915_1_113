@@ -11,13 +11,12 @@ public interface IntegrityCaseRepository extends JpaRepository<IntegrityCase, Lo
 
     List<IntegrityCase> findByStudentProfile(StudentProfile studentProfile);
 
-    List<IntegrityCase> findByStudentProfile_Id(Long studentId);
+    List<IntegrityCase> findByStudentProfile_Id(Long id);
 
+    // ✅ Correct property name
     List<IntegrityCase> findByStudentProfile_StudentId(String studentId);
 
     List<IntegrityCase> findByIncidentDateBetween(LocalDate start, LocalDate end);
 
     List<IntegrityCase> findByStatus(String status);
 }
-
-

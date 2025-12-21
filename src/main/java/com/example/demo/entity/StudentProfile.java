@@ -14,97 +14,46 @@ public class StudentProfile {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String studentId;
+    private String studentId;   // ✅ THIS is the correct field name
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
     private String program;
 
     @Column(nullable = false)
     private Integer yearLevel;
 
-    @Column(nullable = false)
     private Boolean repeatOffender = false;
 
-    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @OneToMany(
-        mappedBy = "studentProfile",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IntegrityCase> integrityCases = new ArrayList<>();
 
     public StudentProfile() {}
 
-    // ---------- getters & setters ----------
+    // Getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getStudentId() { return studentId; }
+    public void setStudentId(String studentId) { this.studentId = studentId; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getStudentId() {
-        return studentId;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
+    public String getProgram() { return program; }
+    public void setProgram(String program) { this.program = program; }
 
-    public String getName() {
-        return name;
-    }
+    public Integer getYearLevel() { return yearLevel; }
+    public void setYearLevel(Integer yearLevel) { this.yearLevel = yearLevel; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getProgram() {
-        return program;
-    }
-
-    public void setProgram(String program) {
-        this.program = program;
-    }
-
-    public Integer getYearLevel() {
-        return yearLevel;
-    }
-
-    public void setYearLevel(Integer yearLevel) {
-        this.yearLevel = yearLevel;
-    }
-
-    public Boolean getRepeatOffender() {
-        return repeatOffender;
-    }
-
+    public Boolean getRepeatOffender() { return repeatOffender; }
     public void setRepeatOffender(Boolean repeatOffender) {
         this.repeatOffender = repeatOffender;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public List<IntegrityCase> getIntegrityCases() {
-        return integrityCases;
-    }
-}
+    public LocalDateTime getCr
