@@ -10,29 +10,24 @@ import java.util.List;
 @RequestMapping("/api/students")
 public class StudentProfileController {
 
-    private final StudentProfileService studentProfileService;
+    private final StudentProfileService service;
 
-    public StudentProfileController(StudentProfileService studentProfileService) {
-        this.studentProfileService = studentProfileService;
+    public StudentProfileController(StudentProfileService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public StudentProfile createStudent(@RequestBody StudentProfile studentProfile) {
-        return studentProfileService.createStudent(studentProfile);
+    public StudentProfile create(@RequestBody StudentProfile student) {
+        return service.createStudent(student);
     }
 
     @GetMapping
-    public List<StudentProfile> getAllStudents() {
-        return studentProfileService.getAllStudents();
+    public List<StudentProfile> getAll() {
+        return service.getAllStudents();
     }
 
     @GetMapping("/{id}")
-    public StudentProfile getStudentById(@PathVariable Long id) {
-        return studentProfileService.getStudentById(id);
-    }
-
-    @PutMapping("/{id}/repeat-offender")
-    public StudentProfile updateRepeatOffenderStatus(@PathVariable Long id) {
-        return studentProfileService.updateRepeatOffenderStatus(id);
+    public StudentProfile getById(@PathVariable Long id) {
+        return service.getStudentById(id);
     }
 }

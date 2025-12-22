@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/evidence")
 public class EvidenceRecordController {
 
-    private final EvidenceRecordService evidenceRecordService;
+    private final EvidenceRecordService service;
 
-    public EvidenceRecordController(EvidenceRecordService evidenceRecordService) {
-        this.evidenceRecordService = evidenceRecordService;
+    public EvidenceRecordController(EvidenceRecordService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public EvidenceRecord submitEvidence(@RequestBody EvidenceRecord evidenceRecord) {
-        return evidenceRecordService.submitEvidence(evidenceRecord);
+    public EvidenceRecord submit(@RequestBody EvidenceRecord evidence) {
+        return service.submitEvidence(evidence);
     }
 }

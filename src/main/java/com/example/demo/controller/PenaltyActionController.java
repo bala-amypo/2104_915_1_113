@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/penalties")
 public class PenaltyActionController {
 
-    private final PenaltyActionService penaltyActionService;
+    private final PenaltyActionService service;
 
-    public PenaltyActionController(PenaltyActionService penaltyActionService) {
-        this.penaltyActionService = penaltyActionService;
+    public PenaltyActionController(PenaltyActionService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public PenaltyAction addPenalty(@RequestBody PenaltyAction penaltyAction) {
-        return penaltyActionService.addPenalty(penaltyAction);
+    public PenaltyAction addPenalty(@RequestBody PenaltyAction penalty) {
+        return service.addPenalty(penalty);
     }
 }

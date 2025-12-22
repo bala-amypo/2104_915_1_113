@@ -5,37 +5,31 @@ import com.example.demo.service.IntegrityCaseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cases")
 public class IntegrityCaseController {
 
-    private final IntegrityCaseService integrityCaseService;
+    private final IntegrityCaseService service;
 
-    public IntegrityCaseController(IntegrityCaseService integrityCaseService) {
-        this.integrityCaseService = integrityCaseService;
+    public IntegrityCaseController(IntegrityCaseService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public IntegrityCase createCase(@RequestBody IntegrityCase integrityCase) {
-        return integrityCaseService.createCase(integrityCase);
-    }
-
-    @PutMapping("/{id}/status")
-    public IntegrityCase updateCaseStatus(
-            @PathVariable Long id,
-            @RequestParam String status) {
-        return integrityCaseService.updateCaseStatus(id, status);
-    }
-
-    @GetMapping("/{id}")
-    public Optional<IntegrityCase> getCaseById(@PathVariable Long id) {
-        return integrityCaseService.getCaseById(id);
+    public IntegrityCase create(@RequestBody IntegrityCase integrityCase) {
+        return service.createCase(integrityCase);
     }
 
     @GetMapping("/student/{studentId}")
-    public List<IntegrityCase> getCasesByStudent(@PathVariable Long studentId) {
-        return integrityCaseService.getCasesByStudent(studentId);
+    public List<IntegrityCase> getByStudent(@PathVariable Long studentId) {
+        return service.getCasesByStudent(studentId);
+    }
+
+    @PutMapping("/{id}/status")
+    public IntegrityCase updateStatus(
+            @PathVariable Long id,
+            @RequestParam String status) {
+        return service.updateCaseStatus(id, status);
     }
 }

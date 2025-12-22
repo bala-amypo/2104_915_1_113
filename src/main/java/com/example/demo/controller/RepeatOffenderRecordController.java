@@ -8,19 +8,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/repeat-offenders")
 public class RepeatOffenderRecordController {
 
-    private final RepeatOffenderRecordService repeatOffenderRecordService;
+    private final RepeatOffenderRecordService service;
 
-    public RepeatOffenderRecordController(RepeatOffenderRecordService repeatOffenderRecordService) {
-        this.repeatOffenderRecordService = repeatOffenderRecordService;
-    }
-
-    @PostMapping("/{studentId}")
-    public RepeatOffenderRecord calculateRepeatOffender(@PathVariable Long studentId) {
-        return repeatOffenderRecordService.processRepeatOffender(studentId);
+    public RepeatOffenderRecordController(RepeatOffenderRecordService service) {
+        this.service = service;
     }
 
     @GetMapping("/{studentId}")
-    public RepeatOffenderRecord getRepeatOffender(@PathVariable Long studentId) {
-        return repeatOffenderRecordService.getByStudentId(studentId);
+    public RepeatOffenderRecord getRecord(@PathVariable Long studentId) {
+        return service.generateRecord(studentId);
     }
 }
