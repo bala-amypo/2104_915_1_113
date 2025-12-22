@@ -5,18 +5,30 @@ import com.example.demo.repository.RepeatOffenderRecordRepository;
 import com.example.demo.service.RepeatOffenderRecordService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
+public class RepeatOffenderRecordServiceImpl
+        implements RepeatOffenderRecordService {
 
     private final RepeatOffenderRecordRepository repository;
 
-    public RepeatOffenderRecordServiceImpl(RepeatOffenderRecordRepository repository) {
+    public RepeatOffenderRecordServiceImpl(
+            RepeatOffenderRecordRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public RepeatOffenderRecord getByStudentId(Long studentId) {
-        return repository.findByStudentProfile_Id(studentId)
-                .orElseThrow(() -> new RuntimeException("Record not found"));
+
+        List<RepeatOffenderRecord> records =
+                repository.findByStudentProfile_Id(studentId);
+
+        if (records.isEmpty()) {
+            throw new RuntimeException("Record not found");
+        }
+
+        // ✅ Return ONE record (first one)
+        return records.get(0);
     }
 }
