@@ -16,6 +16,6 @@ public class RepeatOffenderRecordController {
 
     @GetMapping("/{studentId}")
     public RepeatOffenderRecord getRecord(@PathVariable Long studentId) {
-        return service.generateRecord(studentId);
+        return service.getByStudentId(studentId);
     }
 }
