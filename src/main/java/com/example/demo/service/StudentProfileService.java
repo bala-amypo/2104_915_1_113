@@ -1,46 +1,15 @@
-package com.example.demo.service.impl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
+package com.example.demo.service;
 
 import com.example.demo.entity.StudentProfile;
-import com.example.demo.repository.StudentProfileRepository;
-import com.example.demo.service.StudentProfileService;
+import java.util.List;
 
-@Service
-public class StudentProfileServiceImpl implements StudentProfileService {
+public interface StudentProfileService {
 
-    private final StudentProfileRepository studentProfileRepository;
+    StudentProfile createStudent(StudentProfile student);
 
-    public StudentProfileServiceImpl(StudentProfileRepository studentProfileRepository) {
-        this.studentProfileRepository = studentProfileRepository;
-    }
+    StudentProfile getStudentById(Long id);
 
-    @Override
-    public StudentProfile createStudent(StudentProfile student) {
-        return studentProfileRepository.save(student);
-    }
+    List<StudentProfile> getAllStudents();
 
-    @Override
-    public StudentProfile getStudentById(Long id) {
-        return studentProfileRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Student not found with id " + id));
-    }
-
-    @Override
-    public List<StudentProfile> getAllStudents() {
-        return studentProfileRepository.findAll();
-    }
-
-    @Override
-    public StudentProfile updateRepeatOffenderStatus(Long studentId) {
-        StudentProfile student = getStudentById(studentId);
-
-        // simple example logic — adjust if you have rules
-        student.setRepeatOffender(true);
-
-        return studentProfileRepository.save(student);
-    }
+    StudentProfile updateRepeatOffenderStatus(Long studentId);
 }
