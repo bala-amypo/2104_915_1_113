@@ -1,13 +1,32 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
+
 public class RepeatOffenderRecord {
 
+    private StudentProfile studentProfile;
+    private int totalCases;
     private boolean repeatOffender;
-    private int caseCount;
+    private String flagSeverity;
+    private LocalDateTime lastUpdated;
 
-    public RepeatOffenderRecord(boolean repeatOffender, int caseCount) {
-        this.repeatOffender = repeatOffender;
-        this.caseCount = caseCount;
+    public RepeatOffenderRecord() {
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
+
+    public int getTotalCases() {
+        return totalCases;
+    }
+
+    public void setTotalCases(int totalCases) {
+        this.totalCases = totalCases;
     }
 
     public boolean isRepeatOffender() {
@@ -18,11 +37,19 @@ public class RepeatOffenderRecord {
         this.repeatOffender = repeatOffender;
     }
 
-    public int getCaseCount() {
-        return caseCount;
+    public String getFlagSeverity() {
+        return flagSeverity;
     }
 
-    public void setCaseCount(int caseCount) {
-        this.caseCount = caseCount;
+    public void setFlagSeverity(String flagSeverity) {
+        this.flagSeverity = flagSeverity;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
