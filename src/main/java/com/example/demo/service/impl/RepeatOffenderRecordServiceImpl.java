@@ -1,27 +1,36 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.entity.StudentProfile;
 import com.example.demo.repository.RepeatOffenderRecordRepository;
-import com.example.demo.service.RepeatOffenderRecordService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
-public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
+public class RepeatOffenderRecordServiceImpl {
 
-    @Autowired
-    private RepeatOffenderRecordRepository repeatOffenderRecordRepository;
+    private final RepeatOffenderRecordRepository repeatOffenderRecordRepository;
 
-    @Override
-    public RepeatOffenderRecord findByStudent(StudentProfile student) {
-        Optional<RepeatOffenderRecord> recordOpt = repeatOffenderRecordRepository.findByStudentProfile(student);
-        return recordOpt.orElse(null);
+    public RepeatOffenderRecordServiceImpl(
+            RepeatOffenderRecordRepository repeatOffenderRecordRepository) {
+        this.repeatOffenderRecordRepository = repeatOffenderRecordRepository;
     }
 
-    @Override
+    public RepeatOffenderRecord getLatestByStudent(StudentProfile studentProfile) {
+
+        List<RepeatOffenderRecord> records =
+                repeatOffenderRecordRepository.findByStudentProfile(studentProfile);
+
+        if (records.isEmpty()) {
+            return null; // or throw exception if you prefer
+        }
+
+        // return the most recent record (last one)
+        return records.get(records.size() - 1);
+    }
+
     public RepeatOffenderRecord save(RepeatOffenderRecord record) {
         return repeatOffenderRecordRepository.save(record);
     }
