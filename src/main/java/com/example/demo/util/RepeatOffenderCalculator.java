@@ -1,28 +1,24 @@
 package com.example.demo.util;
 
-import com.example.demo.entity.IntegrityCase;
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.entity.StudentProfile;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class RepeatOffenderCalculator {
 
-    public RepeatOffenderRecord computeRepeatOffenderRecord(StudentProfile student, List<IntegrityCase> cases) {
-        RepeatOffenderRecord record = new RepeatOffenderRecord();
-        record.setStudentProfile(student);
-        record.setTotalCases(cases.size());
+    public static RepeatOffenderRecord calculate(StudentProfile profile, int cases) {
 
-        // Determine severity based on number of cases
-        if (cases.size() == 1) {
+        RepeatOffenderRecord record = new RepeatOffenderRecord();
+        record.setStudentProfile(profile);
+        record.setTotalCases(cases);
+
+        if (cases <= 1) {
             record.setFlagSeverity("LOW");
-        } else if (cases.size() == 2) {
+        } else if (cases <= 3) {
             record.setFlagSeverity("MEDIUM");
-        } else if (cases.size() >= 3) {
-            record.setFlagSeverity("HIGH");
         } else {
-            record.setFlagSeverity("LOW");
+            record.setFlagSeverity("HIGH");
         }
 
         record.setLastUpdated(LocalDateTime.now());
