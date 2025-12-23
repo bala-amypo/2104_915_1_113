@@ -1,30 +1,31 @@
 package com.example.demo.util;
 
-import java.time.LocalDateTime;
-
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.entity.StudentProfile;
 
+import java.time.LocalDateTime;
+
 public class RepeatOffenderCalculator {
 
-    public static RepeatOffenderRecord calculate(StudentProfile student, int totalCases) {
+    public static RepeatOffenderRecord calculate(StudentProfile student, int cases) {
 
-        RepeatOffenderRecord record = new RepeatOffenderRecord();
+        boolean repeatOffender = cases >= 3;
+
+        RepeatOffenderRecord record =
+                new RepeatOffenderRecord(repeatOffender, cases);
+
         record.setStudentProfile(student);
-        record.setTotalCases(totalCases);
 
-        if (totalCases >= 5) {
-            record.setRepeatOffender(true);
+        if (cases >= 5) {
             record.setFlagSeverity("HIGH");
-        } else if (totalCases >= 3) {
-            record.setRepeatOffender(true);
+        } else if (cases >= 3) {
             record.setFlagSeverity("MEDIUM");
         } else {
-            record.setRepeatOffender(false);
             record.setFlagSeverity("LOW");
         }
 
         record.setLastUpdated(LocalDateTime.now());
+
         return record;
     }
 }
