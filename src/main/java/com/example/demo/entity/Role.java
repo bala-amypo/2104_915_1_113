@@ -6,13 +6,12 @@ import jakarta.persistence.*;
 public class Role {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    public Role() {}
-    public Role(String name) { this.name = name; }
-
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 }
