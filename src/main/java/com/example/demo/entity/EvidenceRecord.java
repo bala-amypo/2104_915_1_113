@@ -4,30 +4,21 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "evidence_record")
 public class EvidenceRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "case_id", nullable = false)
+    @ManyToOne
     private IntegrityCase integrityCase;
 
-    @Column(nullable = false)
     private String evidenceType;
-
-    @Column(columnDefinition = "TEXT")
     private String content;
-
-    @Column(nullable = false)
     private String submittedBy;
-
-    @Column(nullable = false)
     private LocalDateTime submittedAt = LocalDateTime.now();
 
-    // Getters and setters
+    // getters & setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -44,5 +35,4 @@ public class EvidenceRecord {
     public void setSubmittedBy(String submittedBy) { this.submittedBy = submittedBy; }
 
     public LocalDateTime getSubmittedAt() { return submittedAt; }
-    public void setSubmittedAt(LocalDateTime submittedAt) { this.submittedAt = submittedAt; }
 }

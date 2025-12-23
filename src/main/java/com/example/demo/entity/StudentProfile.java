@@ -6,38 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "student_profile")
 public class StudentProfile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String studentId;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
     private String program;
-
-    @Column(nullable = false)
     private Integer yearLevel;
-
-    @Column(nullable = false)
     private Boolean repeatOffender = false;
-
-    @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL)
     private List<IntegrityCase> integrityCases = new ArrayList<>();
 
-    // Getters and setters
+    // getters & setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -60,8 +46,6 @@ public class StudentProfile {
     public void setRepeatOffender(Boolean repeatOffender) { this.repeatOffender = repeatOffender; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public List<IntegrityCase> getIntegrityCases() { return integrityCases; }
-    public void setIntegrityCases(List<IntegrityCase> integrityCases) { this.integrityCases = integrityCases; }
 }
