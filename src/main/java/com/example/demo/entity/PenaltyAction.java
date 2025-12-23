@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 @Table(name = "penalty_action")
 public class PenaltyAction {
 
+    public enum PenaltyType {
+        WARNING, WARNING2, WARNING3, SUSPENSION, EXPULSION
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +19,11 @@ public class PenaltyAction {
     @JoinColumn(name = "case_id", nullable = false)
     private IntegrityCase integrityCase;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String penaltyType;
+    private PenaltyType penaltyType;
 
-    @Column(nullable = false, length = 1000)
+    @Column(columnDefinition = "TEXT")
     private String details;
 
     @Column(nullable = false)
@@ -34,8 +39,8 @@ public class PenaltyAction {
     public IntegrityCase getIntegrityCase() { return integrityCase; }
     public void setIntegrityCase(IntegrityCase integrityCase) { this.integrityCase = integrityCase; }
 
-    public String getPenaltyType() { return penaltyType; }
-    public void setPenaltyType(String penaltyType) { this.penaltyType = penaltyType; }
+    public PenaltyType getPenaltyType() { return penaltyType; }
+    public void setPenaltyType(PenaltyType penaltyType) { this.penaltyType = penaltyType; }
 
     public String getDetails() { return details; }
     public void setDetails(String details) { this.details = details; }

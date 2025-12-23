@@ -18,7 +18,7 @@ public class EvidenceRecord {
     @Column(nullable = false)
     private String evidenceType;
 
-    @Column(nullable = false, length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Column(nullable = false)

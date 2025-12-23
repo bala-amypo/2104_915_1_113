@@ -37,9 +37,6 @@ public class StudentProfile {
     @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<IntegrityCase> integrityCases = new ArrayList<>();
 
-    @OneToOne(mappedBy = "studentProfile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private RepeatOffenderRecord repeatOffenderRecord;
-
     // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -67,9 +64,4 @@ public class StudentProfile {
 
     public List<IntegrityCase> getIntegrityCases() { return integrityCases; }
     public void setIntegrityCases(List<IntegrityCase> integrityCases) { this.integrityCases = integrityCases; }
-
-    public RepeatOffenderRecord getRepeatOffenderRecord() { return repeatOffenderRecord; }
-    public void setRepeatOffenderRecord(RepeatOffenderRecord repeatOffenderRecord) {
-        this.repeatOffenderRecord = repeatOffenderRecord;
-    }
 }

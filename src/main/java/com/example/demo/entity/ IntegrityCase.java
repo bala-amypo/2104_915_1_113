@@ -10,6 +10,10 @@ import java.util.List;
 @Table(name = "integrity_case")
 public class IntegrityCase {
 
+    public enum Status {
+        OPEN, UNDERREVIEW, RESOLVED
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,11 +28,12 @@ public class IntegrityCase {
     @Column(nullable = false)
     private String instructorName;
 
-    @Column(nullable = false, length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status = "OPEN";
+    private Status status = Status.OPEN;
 
     @Column(nullable = false)
     private LocalDate incidentDate;
@@ -58,8 +63,8 @@ public class IntegrityCase {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 
     public LocalDate getIncidentDate() { return incidentDate; }
     public void setIncidentDate(LocalDate incidentDate) { this.incidentDate = incidentDate; }
