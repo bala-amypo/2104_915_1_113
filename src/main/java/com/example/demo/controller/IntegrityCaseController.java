@@ -38,12 +38,12 @@ public class IntegrityCaseController {
         return ResponseEntity.ok(integrityCaseService.getCaseById(id));
     }
 
-    @GetMapping("/student/{studentIdentifier}")
+    @GetMapping("/student/{studentProfileId}")
     public ResponseEntity<List<IntegrityCase>> getCasesByStudent(
-            @PathVariable String studentIdentifier) {
+            @PathVariable Long studentProfileId) {
 
         return ResponseEntity.ok(
-                integrityCaseService.getCasesByStudentIdentifier(studentIdentifier)
+                integrityCaseService.getCasesByStudentIdentifier(studentProfileId)
         );
     }
 
