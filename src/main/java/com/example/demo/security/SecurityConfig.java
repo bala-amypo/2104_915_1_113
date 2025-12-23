@@ -13,21 +13,23 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/v3/api-docs/**",
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/auth/**"
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                );
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/auth/**",
+                "/**"          // 👈 TEMP: allow everything
+            ).permitAll()
+            .anyRequest().authenticated()
+        );
 
-        return http.build();
-    }
+    return http.build();
+}
+
 
     @Bean
     public AuthenticationManager authenticationManager(
