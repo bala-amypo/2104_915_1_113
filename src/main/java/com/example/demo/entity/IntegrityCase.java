@@ -1,28 +1,21 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "integrity_case")
 public class IntegrityCase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String studentIdentifier;
+    private String caseType;
 
-    private String caseDescription;
+    @ManyToOne
+    @JoinColumn(name = "student_profile_id")
+    private StudentProfile studentProfile;
 
-    private String status;
-
-    public IntegrityCase() {
-    }
-
+    // getters & setters
     public Long getId() {
         return id;
     }
@@ -31,27 +24,19 @@ public class IntegrityCase {
         this.id = id;
     }
 
-    public String getStudentIdentifier() {
-        return studentIdentifier;
+    public String getCaseType() {
+        return caseType;
     }
 
-    public void setStudentIdentifier(String studentIdentifier) {
-        this.studentIdentifier = studentIdentifier;
+    public void setCaseType(String caseType) {
+        this.caseType = caseType;
     }
 
-    public String getCaseDescription() {
-        return caseDescription;
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
     }
 
-    public void setCaseDescription(String caseDescription) {
-        this.caseDescription = caseDescription;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }
