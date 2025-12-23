@@ -25,7 +25,8 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     @Override
     public IntegrityCase getCaseById(Long id) {
         return integrityCaseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Integrity case not found with id " + id));
+                .orElseThrow(() ->
+                        new RuntimeException("Integrity case not found with id " + id));
     }
 
     @Override
@@ -37,7 +38,8 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
 
     @Override
     public List<IntegrityCase> getCasesByStudentIdentifier(String studentIdentifier) {
-        return integrityCaseRepository.findByStudentIdentifier(studentIdentifier);
+        return integrityCaseRepository
+                .findByStudentProfile_StudentIdentifier(studentIdentifier);
     }
 
     @Override
