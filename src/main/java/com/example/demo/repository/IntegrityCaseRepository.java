@@ -10,5 +10,5 @@ import com.example.demo.entity.IntegrityCase;
 @Repository
 public interface IntegrityCaseRepository extends JpaRepository<IntegrityCase, Long> {
 
-    List<IntegrityCase> findByStudentIdentifier(String studentIdentifier);
+    List<IntegrityCase> findByStudentProfile_StudentIdentifier(String studentIdentifier);
 }
