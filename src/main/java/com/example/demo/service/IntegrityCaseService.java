@@ -10,6 +10,8 @@ public interface IntegrityCaseService {
 
     IntegrityCase getCaseById(Long id);
 
+    IntegrityCase updateCaseStatus(Long caseId, String status);
+
     List<IntegrityCase> getCasesByStudentIdentifier(String studentIdentifier);
 
     List<IntegrityCase> getAllCases();

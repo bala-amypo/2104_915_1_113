@@ -25,7 +25,14 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     @Override
     public IntegrityCase getCaseById(Long id) {
         return integrityCaseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("IntegrityCase not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Integrity case not found with id " + id));
+    }
+
+    @Override
+    public IntegrityCase updateCaseStatus(Long caseId, String status) {
+        IntegrityCase integrityCase = getCaseById(caseId);
+        integrityCase.setStatus(status);
+        return integrityCaseRepository.save(integrityCase);
     }
 
     @Override
