@@ -15,7 +15,6 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
     private final long expirationMs = 86400000;
 
     public String generateToken(Authentication authentication,
@@ -31,6 +30,15 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(key)
                 .compact();
+    }
+
+    public String getUsernameFromToken(String token) {
+        return getClaims(token).getSubject();
+    }
+
+    public boolean validateToken(String token) {
+        getClaims(token);
+        return true;
     }
 
     public Claims getClaims(String token) {

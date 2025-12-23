@@ -39,26 +39,16 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    // ================= REGISTER =================
-
     @Override
-    public JwtResponse register(RegisterRequest registerRequest) {
-
-        if (appUserRepository.existsByEmail(registerRequest.getEmail())) {
-            throw new IllegalArgumentException("Email already exists");
-        }
+    public JwtResponse register(RegisterRequest request) {
 
         AppUser user = new AppUser();
-        user.setEmail(registerRequest.getEmail());
-        user.setFullName(registerRequest.getFullName());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        user.setEmail(request.getEmail());
+        user.setFullName(request.getFullName());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        Role role = roleRepository.findByName(registerRequest.getRole())
-                .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                                "Role not found: " + registerRequest.getRole()
-                        )
-                );
+        Role role = roleRepository.findByName(request.getRole())
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
 
         Set<Role> roles = new HashSet<>();
         roles.add(role);
@@ -66,11 +56,10 @@ public class AuthServiceImpl implements AuthService {
 
         appUserRepository.save(user);
 
-        // Authenticate newly registered user
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        registerRequest.getEmail(),
-                        registerRequest.getPassword()
+                        request.getEmail(),
+                        request.getPassword()
                 )
         );
 
@@ -84,26 +73,20 @@ public class AuthServiceImpl implements AuthService {
         return new JwtResponse(token, user.getEmail(), role.getName());
     }
 
-    // ================= LOGIN =================
-
     @Override
-    public JwtResponse login(LoginRequest loginRequest) {
+    public JwtResponse login(LoginRequest request) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
+                        request.getEmail(),
+                        request.getPassword()
                 )
         );
 
-        AppUser user = appUserRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found")
-                );
+        AppUser user = appUserRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        String role = user.getRoles().isEmpty()
-                ? "USER"
-                : user.getRoles().iterator().next().getName();
+        String role = user.getRoles().iterator().next().getName();
 
         String token = jwtTokenProvider.generateToken(
                 authentication,

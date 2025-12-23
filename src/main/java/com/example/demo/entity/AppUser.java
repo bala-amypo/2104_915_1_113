@@ -37,6 +37,10 @@ public class AppUser {
         this.fullName = fullName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
