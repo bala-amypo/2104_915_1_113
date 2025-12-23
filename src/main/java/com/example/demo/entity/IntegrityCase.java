@@ -11,6 +11,8 @@ public class IntegrityCase {
 
     private String caseType;
 
+    private String status;   // ✅ ADD THIS
+
     @ManyToOne
     @JoinColumn(name = "student_profile_id")
     private StudentProfile studentProfile;
@@ -30,6 +32,14 @@ public class IntegrityCase {
 
     public void setCaseType(String caseType) {
         this.caseType = caseType;
+    }
+
+    public String getStatus() {        // ✅ ADD
+        return status;
+    }
+
+    public void setStatus(String status) {   // ✅ ADD
+        this.status = status;
     }
 
     public StudentProfile getStudentProfile() {
