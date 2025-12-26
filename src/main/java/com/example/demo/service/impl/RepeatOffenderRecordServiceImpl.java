@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
 
     @Override
-    public String generateRecord(Long caseId) {
-        return "Repeat Offender Record generated for Case ID: " + caseId;
+    public String generateRecord(Long offenderId) {
+        return "Repeat Offender Record generated for offender ID: " + offenderId;
     }
 }
