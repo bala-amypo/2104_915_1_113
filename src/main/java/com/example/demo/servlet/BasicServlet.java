@@ -1,19 +1,37 @@
 package com.example.demo.servlet;
 
-import jakarta.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class BasicServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        resp.setStatus(HttpServletResponse.SC_OK);
-        resp.getWriter().write("Servlet is running");
+    @Override
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        PrintWriter writer = response.getWriter();
+        writer.write("Servlet is running");
+        writer.flush();
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        resp.setStatus(HttpServletResponse.SC_CREATED);
-        resp.getWriter().write("Servlet POST handled");
+    @Override
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setStatus(HttpServletResponse.SC_CREATED);
+
+        PrintWriter writer = response.getWriter();
+        writer.write("Servlet POST handled");
+        writer.flush();
     }
 }

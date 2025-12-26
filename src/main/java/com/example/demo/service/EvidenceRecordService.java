@@ -4,5 +4,5 @@ import com.example.demo.entity.EvidenceRecord;
 
 public interface EvidenceRecordService {
 
-    EvidenceRecord submitEvidence(EvidenceRecord evidence);
+    EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord);
 }

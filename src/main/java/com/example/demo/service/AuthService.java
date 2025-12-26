@@ -1,5 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.JwtResponse;
+import com.example.demo.dto.LoginRequest;
+import com.example.demo.dto.RegisterRequest;
+
 public interface AuthService {
-    String login();
+
+    JwtResponse login(LoginRequest loginRequest);
+
+    void register(RegisterRequest registerRequest);
 }

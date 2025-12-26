@@ -4,5 +4,5 @@ import com.example.demo.entity.PenaltyAction;
 
 public interface PenaltyActionService {
 
-    PenaltyAction addPenalty(PenaltyAction penalty);
+    PenaltyAction addPenalty(PenaltyAction penaltyAction);
 }
