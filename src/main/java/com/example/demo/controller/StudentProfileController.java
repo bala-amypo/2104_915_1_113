@@ -2,12 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.StudentProfile;
 import com.example.demo.service.StudentProfileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 public class StudentProfileController {
 
     private final StudentProfileService service;
@@ -17,17 +17,17 @@ public class StudentProfileController {
     }
 
     @PostMapping
-    public StudentProfile create(@RequestBody StudentProfile student) {
-        return service.create(student);
+    public ResponseEntity<StudentProfile> create(@RequestBody StudentProfile profile) {
+        return ResponseEntity.ok(service.create(profile));
     }
 
     @GetMapping("/{id}")
-    public StudentProfile get(@PathVariable Long id) {
-        return service.getById(id);
+    public ResponseEntity<StudentProfile> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @GetMapping
-    public List<StudentProfile> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<StudentProfile>> getAll() {
+        return ResponseEntity.ok(service.getAll());
     }
 }
