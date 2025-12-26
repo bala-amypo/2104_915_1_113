@@ -2,43 +2,31 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class IntegrityCase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    private String studentIdentifier;
-    private String status;
+    @ManyToOne
+    private StudentProfile studentProfile;
+
+    private String courseCode;
+    private String instructorName;
+    private String description;
+    private String status = "OPEN";
     private LocalDate incidentDate;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "integrityCase")
+    private List<PenaltyAction> penalties = new ArrayList<>();
 
-    public String getStudentIdentifier() {
-        return studentIdentifier;
-    }
+    public IntegrityCase() {}
 
-    public void setStudentIdentifier(String studentIdentifier) {
-        this.studentIdentifier = studentIdentifier;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDate getIncidentDate() {
-        return incidentDate;
-    }
-
-    public void setIncidentDate(LocalDate incidentDate) {
-        this.incidentDate = incidentDate;
-    }
+    // getters & setters
 }
