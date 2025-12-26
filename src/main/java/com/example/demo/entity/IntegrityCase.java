@@ -2,56 +2,43 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class IntegrityCase {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private StudentProfile studentProfile;
-
-    private String courseCode;
-    private String instructorName;
-    private String description;
-
-    private String status = "OPEN";
-
+    private String studentIdentifier;
+    private String status;
     private LocalDate incidentDate;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    public Long getId() {
+        return id;
+    }
 
-    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
-    private List<PenaltyAction> penalties = new ArrayList<>();
+    public String getStudentIdentifier() {
+        return studentIdentifier;
+    }
 
-    // getters/setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setStudentIdentifier(String studentIdentifier) {
+        this.studentIdentifier = studentIdentifier;
+    }
 
-    public StudentProfile getStudentProfile() { return studentProfile; }
-    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
+    public String getStatus() {
+        return status;
+    }
 
-    public String getCourseCode() { return courseCode; }
-    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public String getInstructorName() { return instructorName; }
-    public void setInstructorName(String instructorName) { this.instructorName = instructorName; }
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
-    public LocalDate getIncidentDate() { return incidentDate; }
-    public void setIncidentDate(LocalDate incidentDate) { this.incidentDate = incidentDate; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-
-    public List<PenaltyAction> getPenalties() { return penalties; }
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
+    }
 }
