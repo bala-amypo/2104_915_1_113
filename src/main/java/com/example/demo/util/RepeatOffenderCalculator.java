@@ -1,16 +1,21 @@
 package com.example.demo.util;
 
-import com.example.demo.entity.RepeatOffenderRecord;
-import com.example.demo.entity.StudentProfile;
+import com.example.demo.entity.*;
+import java.util.List;
 
 public class RepeatOffenderCalculator {
 
-    public static RepeatOffenderRecord calculate(StudentProfile profile, int cases) {
+    public RepeatOffenderRecord computeRepeatOffenderRecord(
+            StudentProfile s, List<IntegrityCase> cases) {
 
-        RepeatOffenderRecord record = new RepeatOffenderRecord();
-        record.setTotalCases(cases);
-        record.setRepeatOffender(cases >= 2);
+        RepeatOffenderRecord r = new RepeatOffenderRecord();
+        r.setStudentProfile(s);
+        r.setTotalCases(cases.size());
 
-        return record;
+        if (cases.size() <= 1) r.setFlagSeverity("LOW");
+        else if (cases.size() <= 3) r.setFlagSeverity("MEDIUM");
+        else r.setFlagSeverity("HIGH");
+
+        return r;
     }
 }
