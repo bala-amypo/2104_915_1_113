@@ -4,7 +4,8 @@ import com.example.demo.service.RepeatOffenderRecordService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
+public class RepeatOffenderRecordServiceImpl
+        implements RepeatOffenderRecordService {
 
     @Override
     public String generateRecord(Long offenderId) {

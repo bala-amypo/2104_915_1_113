@@ -14,7 +14,7 @@ public class RepeatOffenderRecordController {
     }
 
     @GetMapping("/{id}")
-    public String generateRecord(@PathVariable Long id) {
+    public String generate(@PathVariable Long id) {
         return service.generateRecord(id);
     }
 }
