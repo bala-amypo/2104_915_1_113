@@ -5,24 +5,30 @@ import com.example.demo.entity.IntegrityCase;
 import com.example.demo.repository.EvidenceRecordRepository;
 import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.service.EvidenceRecordService;
-import com.example.demo.exception.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EvidenceRecordServiceImpl implements EvidenceRecordService {
 
-    @Autowired
-    private EvidenceRecordRepository evidenceRecordRepository;
+    private final EvidenceRecordRepository evidenceRecordRepository;
+    private final IntegrityCaseRepository integrityCaseRepository;
 
-    @Autowired
-    private IntegrityCaseRepository integrityCaseRepository;
+    public EvidenceRecordServiceImpl(
+            EvidenceRecordRepository evidenceRecordRepository,
+            IntegrityCaseRepository integrityCaseRepository) {
+
+        this.evidenceRecordRepository = evidenceRecordRepository;
+        this.integrityCaseRepository = integrityCaseRepository;
+    }
 
     @Override
-    public EvidenceRecord submitEvidence(EvidenceRecord evidence) {
-        IntegrityCase integrityCase = integrityCaseRepository.findById(evidence.getIntegrityCase().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Case not found"));
-        evidence.setIntegrityCase(integrityCase);
-        return evidenceRecordRepository.save(evidence);
+    public EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord) {
+
+        IntegrityCase integrityCase = integrityCaseRepository
+                .findById(evidenceRecord.getIntegrityCase().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Case not found"));
+
+        evidenceRecord.setIntegrityCase(integrityCase);
+        return evidenceRecordRepository.save(evidenceRecord);
     }
 }
