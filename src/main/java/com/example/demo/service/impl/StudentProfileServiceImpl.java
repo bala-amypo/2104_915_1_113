@@ -17,25 +17,17 @@ public class StudentProfileServiceImpl implements StudentProfileService {
     }
 
     @Override
-    public StudentProfile createStudent(StudentProfile student) {
+    public StudentProfile create(StudentProfile student) {
         return repository.save(student);
     }
 
     @Override
-    public StudentProfile getStudentById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found"));
+    public StudentProfile getById(Long id) {
+        return repository.findById(id).orElseThrow();
     }
 
     @Override
-    public List<StudentProfile> getAllStudents() {
+    public List<StudentProfile> getAll() {
         return repository.findAll();
-    }
-
-    @Override
-    public StudentProfile updateRepeatOffenderStatus(Long studentId) {
-        StudentProfile student = getStudentById(studentId);
-        student.setRepeatOffender(true);
-        return repository.save(student);
     }
 }

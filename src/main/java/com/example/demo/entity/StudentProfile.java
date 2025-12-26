@@ -1,14 +1,8 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class StudentProfile {
 
     @Id
@@ -16,6 +10,29 @@ public class StudentProfile {
     private Long id;
 
     private String name;
-    private String email;
     private boolean repeatOffender;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isRepeatOffender() {
+        return repeatOffender;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRepeatOffender(boolean repeatOffender) {
+        this.repeatOffender = repeatOffender;
+    }
 }
