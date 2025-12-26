@@ -10,24 +10,17 @@ import java.util.List;
 @Service
 public class StudentProfileServiceImpl implements StudentProfileService {
 
-    private final StudentProfileRepository repository;
+    private final StudentProfileRepository repo;
 
-    public StudentProfileServiceImpl(StudentProfileRepository repository) {
-        this.repository = repository;
+    public StudentProfileServiceImpl(StudentProfileRepository repo) {
+        this.repo = repo;
     }
 
-    @Override
-    public StudentProfile create(StudentProfile student) {
-        return repository.save(student);
+    public StudentProfile save(StudentProfile s) {
+        return repo.save(s);
     }
 
-    @Override
-    public StudentProfile getById(Long id) {
-        return repository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public List<StudentProfile> getAll() {
-        return repository.findAll();
+    public List<StudentProfile> findAll() {
+        return repo.findAll();
     }
 }

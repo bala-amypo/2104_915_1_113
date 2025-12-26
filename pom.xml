@@ -5,9 +5,19 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- ✅ REQUIRED: Spring Boot Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>demo</name>
+    <description>Demo Spring Boot Project</description>
 
     <properties>
         <java.version>17</java.version>
@@ -77,6 +87,7 @@
 
     <build>
         <plugins>
+            <!-- ✅ Version inherited from parent -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
