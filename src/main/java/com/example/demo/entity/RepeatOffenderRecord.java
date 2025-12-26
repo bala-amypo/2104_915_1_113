@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class RepeatOffenderRecord {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -15,7 +14,7 @@ public class RepeatOffenderRecord {
     private Integer totalCases;
     private String flagSeverity;
 
-    public Long getId() { return id; }
+    public RepeatOffenderRecord() {}
 
     public StudentProfile getStudentProfile() { return studentProfile; }
     public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }

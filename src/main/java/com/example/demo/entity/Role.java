@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Role {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
     private String name;
