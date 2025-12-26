@@ -1,5 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
-public interface AuthService {
-    String login(String username, String password);
+import org.springframework.stereotype.Service;
+
+@Service
+public class AuthServiceImpl {
+
+    public String login() {
+        return "Login disabled for now";
+    }
 }
