@@ -1,17 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
-
-@Entity
 public class StudentProfile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-    private boolean repeatOffender;
 
     public Long getId() {
         return id;
@@ -21,13 +13,11 @@ public class StudentProfile {
         this.id = id;
     }
 
-    public boolean isRepeatOffender() {
-        return repeatOffender;
+    public String getName() {
+        return name;
     }
 
-    public void setRepeatOffender(boolean repeatOffender) {
-        this.repeatOffender = repeatOffender;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    // other fields + getters/setters
 }
