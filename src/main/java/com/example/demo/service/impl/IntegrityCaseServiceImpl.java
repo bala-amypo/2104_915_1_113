@@ -1,48 +1,28 @@
 package com.example.demo.service.impl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.IntegrityCase;
 import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.service.IntegrityCaseService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class IntegrityCaseServiceImpl implements IntegrityCaseService {
 
-    private final IntegrityCaseRepository integrityCaseRepository;
+    private final IntegrityCaseRepository repository;
 
-    public IntegrityCaseServiceImpl(IntegrityCaseRepository integrityCaseRepository) {
-        this.integrityCaseRepository = integrityCaseRepository;
+    public IntegrityCaseServiceImpl(IntegrityCaseRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public IntegrityCase createCase(IntegrityCase integrityCase) {
-        return integrityCaseRepository.save(integrityCase);
+    public IntegrityCase save(IntegrityCase integrityCase) {
+        return repository.save(integrityCase);
     }
 
     @Override
-    public IntegrityCase getCaseById(Long id) {
-        return integrityCaseRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Integrity case not found with id " + id));
-    }
-
-    @Override
-    public IntegrityCase updateCaseStatus(Long caseId, String status) {
-        IntegrityCase integrityCase = getCaseById(caseId);
-        integrityCase.setStatus(status);
-        return integrityCaseRepository.save(integrityCase);
-    }
-
-    @Override
-    public List<IntegrityCase> getCasesByStudentIdentifier(Long studentProfileId) {
-        return integrityCaseRepository.findByStudentProfile_Id(studentProfileId);
-    }
-
-    @Override
-    public List<IntegrityCase> getAllCases() {
-        return integrityCaseRepository.findAll();
+    public List<IntegrityCase> getByStudent(String studentId) {
+        return repository.findByStudentIdentifier(studentId);
     }
 }

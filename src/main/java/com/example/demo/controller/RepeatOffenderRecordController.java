@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.RepeatOffenderRecordService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/repeat-offenders")
@@ -13,8 +13,8 @@ public class RepeatOffenderRecordController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public String generateRecord(@PathVariable Long id) {
-        return service.generateRecord(id);
+    @GetMapping("/{caseId}")
+    public String generate(@PathVariable Long caseId) {
+        return service.generateRecord(caseId);
     }
 }
