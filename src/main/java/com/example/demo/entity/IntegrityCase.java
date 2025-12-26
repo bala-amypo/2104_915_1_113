@@ -1,52 +1,57 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class IntegrityCase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
-    private String caseType;
-
-    private String status;   // ✅ ADD THIS
-
     @ManyToOne
-    @JoinColumn(name = "student_profile_id")
     private StudentProfile studentProfile;
 
-    // getters & setters
-    public Long getId() {
-        return id;
-    }
+    private String courseCode;
+    private String instructorName;
+    private String description;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String status = "OPEN";
 
-    public String getCaseType() {
-        return caseType;
-    }
+    private LocalDate incidentDate;
 
-    public void setCaseType(String caseType) {
-        this.caseType = caseType;
-    }
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    public String getStatus() {        // ✅ ADD
-        return status;
-    }
+    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
+    private List<PenaltyAction> penalties = new ArrayList<>();
 
-    public void setStatus(String status) {   // ✅ ADD
-        this.status = status;
-    }
+    // getters/setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
+    public StudentProfile getStudentProfile() { return studentProfile; }
+    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
 
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
+    public String getCourseCode() { return courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
+
+    public String getInstructorName() { return instructorName; }
+    public void setInstructorName(String instructorName) { this.instructorName = instructorName; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public LocalDate getIncidentDate() { return incidentDate; }
+    public void setIncidentDate(LocalDate incidentDate) { this.incidentDate = incidentDate; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public List<PenaltyAction> getPenalties() { return penalties; }
 }

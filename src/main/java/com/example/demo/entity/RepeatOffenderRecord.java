@@ -1,23 +1,28 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.*;
+
+@Entity
 public class RepeatOffenderRecord {
 
-    private boolean repeatOffender;
-    private int totalCases;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public boolean isRepeatOffender() {
-        return repeatOffender;
-    }
+    @ManyToOne
+    private StudentProfile studentProfile;
 
-    public void setRepeatOffender(boolean repeatOffender) {
-        this.repeatOffender = repeatOffender;
-    }
+    private Integer totalCases;
+    private String flagSeverity;
 
-    public int getTotalCases() {
-        return totalCases;
-    }
+    public Long getId() { return id; }
 
-    public void setTotalCases(int totalCases) {
-        this.totalCases = totalCases;
-    }
+    public StudentProfile getStudentProfile() { return studentProfile; }
+    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
+
+    public Integer getTotalCases() { return totalCases; }
+    public void setTotalCases(Integer totalCases) { this.totalCases = totalCases; }
+
+    public String getFlagSeverity() { return flagSeverity; }
+    public void setFlagSeverity(String flagSeverity) { this.flagSeverity = flagSeverity; }
 }

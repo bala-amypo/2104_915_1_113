@@ -16,9 +16,10 @@ public class PenaltyAction {
     private String penaltyType;
     private String details;
     private String issuedBy;
+
     private LocalDateTime issuedAt = LocalDateTime.now();
 
-    // getters & setters
+    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

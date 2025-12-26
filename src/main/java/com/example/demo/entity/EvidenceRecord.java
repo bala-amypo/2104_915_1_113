@@ -16,9 +16,10 @@ public class EvidenceRecord {
     private String evidenceType;
     private String content;
     private String submittedBy;
+
     private LocalDateTime submittedAt = LocalDateTime.now();
 
-    // getters & setters
+    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
